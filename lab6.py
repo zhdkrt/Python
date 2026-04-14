@@ -1,29 +1,29 @@
 # Задание 1
 # Создайте текстовый файл example.txt и запишите в него несколько строк текста на русском языке.
 # Откройте файл example.txt в режиме чтения и считайте из него данные 4 разными способами. Выведите полученные данные на экран.
-with open('example1.txt','w') as file:
+with open('example1.txt','w', encoding='utf-8') as file:
     file.write('текстText1\n')
     file.write('текстText2\n')
     file.write('текстText3\n')
 
-with open('example1.txt', 'r') as file:
+with open('example1.txt', 'r', encoding='utf-8') as file:
     res1 = file.read()
 
 res2 = []
-with open('example1.txt', 'r') as file:
+with open('example1.txt', 'r', encoding='utf-8') as file:
     line = file.readline()
     while line:
         res2.append(line.strip())
         line = file.readline()
 
 res3 = []
-with open('example1.txt','r') as file:
+with open('example1.txt','r', encoding='utf-8') as file:
     lines = file.readlines()
     for line in lines:
         res3.append(line.strip())
 
 res4 = []
-with open('example1.txt','r') as file:
+with open('example1.txt','r', encoding='utf-8') as file:
     for line in file:
         res4.append(line.strip())
 
@@ -92,22 +92,22 @@ with open('example3.txt', 'w', encoding='utf-8' ) as file:
 # Задание 4
 # Создайте программу, которая объединяет несколько три текстовых файла в один. Программа должна запрашивать у пользователя имена файлов для объединения и имя выходного файла.
 # При объединении необходимо удалить дубликаты строк и сохранить порядок появления строк.
-# fileName1 = input('введите имя первого файла: ')
-# fileName2 = input('введите имя второго файла: ')
-# fileName3 = input('введите имя третьего файла: ')
-# finalName = input('введите имя выходного файла: ')
+fileName1 = input('введите имя первого файла: ')
+fileName2 = input('введите имя второго файла: ')
+fileName3 = input('введите имя третьего файла: ')
+finalName = input('введите имя выходного файла: ')
 
-# lines = []
+lines = []
 
-# for fileName in [fileName1,fileName2,fileName3]:
-#     with open(fileName, 'r', encoding='utf-8') as file:
-#         for line in file:
-#             line = line.strip()
-#             if line not in lines:
-#                 lines.append(line)
+for fileName in [fileName1,fileName2,fileName3]:
+    with open(fileName, 'r', encoding='utf-8') as file:
+        for line in file:
+            line = line.strip()
+            if line not in lines:
+                lines.append(line)
 
-# with open(finalName,'w', encoding='utf-8') as file:
-#     file.write('\n'.join(lines))
+with open(finalName,'w', encoding='utf-8') as file:
+    file.write('\n'.join(lines))
 
 # Задание 5
 # Создайте файл с некоторым содержимым, например, data.txt.
@@ -134,20 +134,20 @@ except:
 # Напишите программу, которая спрашивает сколько папок надо создать = N. 
 # После этого создает в папке PRIM нужное количество папок с именами prim1, prim2, … primN.
 # Удалите папки с именами prim2 и prim4.
-# N = int(input('введите количество папок'))
+N = int(input('введите количество папок'))
 
-# if not os.path.exists('PRIM'):
-#     os.mkdir('PRIM')
+if not os.path.exists('PRIM'):
+    os.mkdir('PRIM')
 
-# for i in range(1, N + 1):
-#     if not os.path.exists(f'PRIM/prim{i}'):
-#         os.mkdir(f'PRIM/prim{i}')
+for i in range(1, N + 1):
+    if not os.path.exists(f'PRIM/prim{i}'):
+        os.mkdir(f'PRIM/prim{i}')
 
-# if os.path.isdir('PRIM/prim2'):
-#     os.rmdir('PRIM/prim2')
+if os.path.isdir('PRIM/prim2'):
+    os.rmdir('PRIM/prim2')
 
-# if os.path.isdir('PRIM/prim4'):
-#     os.rmdir('PRIM/prim4')
+if os.path.isdir('PRIM/prim4'):
+    os.rmdir('PRIM/prim4')
 
 # Задание 7
 # Напишите программу, которая читает JSON-файл, содержащий информацию о студентах (имя, возраст, оценки). Программа должна выводить:
@@ -229,7 +229,7 @@ with open('user.pickle', 'wb') as file:
 with open('user.pickle', 'rb') as file:
     result = p.load(file)
 
-print("Данные из файла:")
+print("данные из файла:")
 for key, value in result.items():
     print(f"{key}: {value}")
 
@@ -295,25 +295,22 @@ cur.execute('''
 ''')
 
 cur.executemany('INSERT INTO professor (name, department) VALUES (?, ?)', [
-    ('Иванов Иван Иванович',     'Кафедра информатики'),
-    ('Петрова Мария Сергеевна',  'Кафедра математики'),
+    ('Иванов Иван Иванович', 'Кафедра информатики'),
+    ('Петрова Мария Сергеевна', 'Кафедра математики'),
     ('Сидоров Алексей Петрович', 'Кафедра физики'),
 ])
 
 cur.executemany('INSERT INTO course (name, professor_id) VALUES (?, ?)', [
     ('Python программирование', 1),
-    ('Высшая математика',       2),
-    ('Физика',                  3),
-    ('Базы данных',             1),
+    ('Высшая математика', 2),
+    ('Физика', 3),
+    ('Базы данных', 1),
 ])
 
 cur.executemany('INSERT INTO student (name, birth_date, course_id) VALUES (?, ?, ?)', [
-    ('Артём Жидик',     '2004-05-15', 1),
-    ('Мария Козлова',   '2003-08-22', 2),
-    ('Дмитрий Смирнов', '2004-11-03', 1),
-    ('Анна Белова',     '2003-03-17', 3),
-    ('Никита Морозов',  '2005-01-09', 4),
-    ('Ольга Новикова',  '2004-07-30', 2),
+    ('Артём Жидик','2006-02-10', 1),
+    ('Карелина Вероника','2005-10-15', 2),
+    ('Лелеш Богдан', '2006-06-31', 1),
 ])
 
 conn.commit()
@@ -346,7 +343,7 @@ for row in cur.fetchall():
 cur.execute('''
     SELECT student.name, course.name, professor.name
     FROM student
-    JOIN course    ON student.course_id   = course.id
+    JOIN course ON student.course_id = course.id
     JOIN professor ON course.professor_id = professor.id
 ''')
 
