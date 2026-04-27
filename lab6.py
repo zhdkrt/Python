@@ -180,10 +180,10 @@ for st in data:
 # После изменений программа должна записать обновленные данные обратно в тот же файл.
 products = [
     {"name": "Ноутбук", "price": 1200.00, "count": 15},
-    {"name": "Смартфон", "price": 800.00,  "count": 30},
-    {"name": "Наушники", "price": 150.00,  "count": 50},
-    {"name": "Клавиатура", "price": 75.00,   "count": 40},
-    {"name": "Монитор", "price": 400.00,  "count": 20}
+    {"name": "Смартфон", "price": 800.00, "count": 30},
+    {"name": "Наушники", "price": 150.00, "count": 50},
+    {"name": "Клавиатура", "price": 75.00, "count": 40},
+    {"name": "Монитор", "price": 400.00, "count": 20}
 ]
 
 with open('products.json', 'w', encoding='utf-8') as file:
