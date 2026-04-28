@@ -27,6 +27,7 @@ class Rectangle(Shape):
     def calculate_area(self):
         return self.sideA * self.sideB
 
+
 circ1 = Circle(10)
 print(f"площадь окружности: {circ1.calculate_area()}")
 
@@ -42,17 +43,21 @@ class Animal:
     def make_sound(self):
         return "животное говорит: "
 
+
 class Dog(Animal):
     def make_sound(self):
         return super().make_sound() + "гав-гав"
     
+
 class Cat(Animal):
     def make_sound(self):
         return super().make_sound() + "мяу-мяу"
 
+
 class Cow(Animal):
     def make_sound(self):
         return super().make_sound() + "му-му"
+
 
 animalList = [Dog(), Cat(), Cow()]
 
@@ -83,6 +88,7 @@ class Person:
             self.__age = age
         else:
             print('возраст введен неправильно')
+
 
 pers1 = Person('Артём', 20)
 print(f"имя: {pers1.get_name()}, возраст: {pers1.get_age()}")
@@ -123,6 +129,7 @@ class House(Place):
     
     def to_sell(self):
         print(f"продается дом {self.area}м2, {self.floors} этажей, по адресу: {self.address}")
+
 
 apart1 = Apartment(70,'Академика Высоцкого 9', 3)
 house1 = House(70,'Академика Высоцкого 9', 2)
