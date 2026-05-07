@@ -30,11 +30,11 @@ def parseNews(html):
     return newsItems
 
 def displayNews(news_list):
-    print(f"  БелТА — Все новости")
+    print(f"БелТА — Все новости")
 
     for i, news in enumerate(news_list, 1):
-        print(f"[{i:>3}] {news['time']:>5}  [{news['category']:<15}]  {news['title']}")
-        print(f"       {news['url']}")
+        print(f"[{i}] {news['time']}  [{news['category']}]  {news['title']}")
+        print(f"{news['url']}")
         print()
 
     print(f"Всего новостей: {len(news_list)}")
@@ -44,18 +44,8 @@ news = parseNews(html)
 displayNews(news)
 
 #task2
-def buildRequest(city):
-    params = {
-        "q": city,
-        "appid": API_KEY,
-        "units": "metric",
-        "lang": "ru",
-    }
-    return params
-
-def fetchWeather(city):
-    params = buildRequest(city)
-    response = requests.get(BASE_URL, headers = {"User-Agent": "YaBrowser/26.3.5.782"}, params=params)
+def fetchWeather(**kwargs):
+    response = requests.get(BASE_URL, params=kwargs)
     response.raise_for_status()
     return response.json()
 
@@ -68,7 +58,7 @@ def displayWeather(data):
     wind_speed = data["wind"]["speed"]
     description = data["weather"][0]["description"]
 
-    print(f"  Погода: {city}, {country}")
+    print(f"Погода: {city}, {country}")
     print(f"Описание: {description.capitalize()}")
     print(f"Температура: {temp}°C (ощущается как {feels_like}°C)")
     print(f"Влажность: {humidity}%")
@@ -77,5 +67,6 @@ def displayWeather(data):
 city = input("Введите город: ")
 API_KEY = "8d3cbe11aa4089c07f41f2e3c03de47d"
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
-data = fetchWeather(city)
+
+data = fetchWeather(q = city, appid = API_KEY, units = "metric", lang =  "ru")
 displayWeather(data)
