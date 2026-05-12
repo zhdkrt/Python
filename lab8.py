@@ -1,6 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
 
+root = tk.Tk()
+root.title("Калькулятор здоровья")
+root.geometry("500x700")
+root.resizable(False, True)
+root.configure(bg=BG)
+
 FONT = ("Arial", 11)
 FONT_B = ("Arial", 11, "bold")
 FONT_H = ("Arial", 13, "bold")
@@ -11,12 +17,7 @@ BLUE = "#3a6fd8"
 BLUE_ACT = "#5a8aec"
 GREEN = "#217a3c"
 
-root = tk.Tk()
-root.title("Калькулятор здоровья")
-root.geometry("500x700")
-root.resizable(False, True)
-root.configure(bg=BG)
-
+IMAGE = tk.PhotoImage(file="health.png")
 
 bmi_frame = tk.Frame(root, bg=WHITE, bd=1, relief="solid", padx=14, pady=12)
 bmi_frame.pack(fill="x", padx=14, pady=(14, 6))
@@ -68,7 +69,7 @@ def calculate_bmi():
 tk.Button(bmi_frame, text="Рассчитать ИМТ", command=calculate_bmi,
           bg=BLUE, fg="white", font=FONT_B, relief="flat",
           padx=10, pady=5, cursor="hand2",
-          activebackground=BLUE_ACT, activeforeground="white").grid(
+          activebackground=BLUE_ACT, activeforeground="white", image=IMAGE, compound=tk.LEFT).grid(
     row=3, column=0, columnspan=2, sticky="w", pady=(10, 0))
 
 
@@ -141,7 +142,7 @@ def calculate_calories():
 tk.Button(cal_frame, text="Рассчитать калории", command=calculate_calories,
           bg=BLUE, fg="white", font=FONT_B, relief="flat",
           padx=10, pady=5, cursor="hand2",
-          activebackground=BLUE_ACT, activeforeground="white").grid(
+          activebackground=BLUE_ACT, activeforeground="white", image=IMAGE, compound=tk.LEFT).grid(
     row=4, column=0, columnspan=2, sticky="w", pady=(10, 0))
 
 
@@ -207,6 +208,6 @@ def calculate_water():
 tk.Button(water_frame, text="Рассчитать норму воды", command=calculate_water,
           bg=BLUE, fg="white", font=FONT_B, relief="flat",
           padx=10, pady=5, cursor="hand2",
-          activebackground=BLUE_ACT, activeforeground="white").grid(row=4, column=0, columnspan=2, sticky="w", pady=(10, 0))
+          activebackground=BLUE_ACT, activeforeground="white", image=IMAGE, compound=tk.LEFT).grid(row=4, column=0, columnspan=2, sticky="w", pady=(10, 0))
 
 root.mainloop()
