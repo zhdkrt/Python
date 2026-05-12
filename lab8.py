@@ -5,11 +5,11 @@ FONT = ("Arial", 11)
 FONT_B = ("Arial", 11, "bold")
 FONT_H = ("Arial", 13, "bold")
 
-BG       = "#eaf0fb"
-WHITE    = "#ffffff"
-BLUE     = "#3a6fd8"
+BG = "#eaf0fb"
+WHITE = "#ffffff"
+BLUE = "#3a6fd8"
 BLUE_ACT = "#5a8aec"
-GREEN    = "#217a3c"
+GREEN = "#217a3c"
 
 root = tk.Tk()
 root.title("Калькулятор здоровья")
@@ -21,29 +21,22 @@ root.configure(bg=BG)
 bmi_frame = tk.Frame(root, bg=WHITE, bd=1, relief="solid", padx=14, pady=12)
 bmi_frame.pack(fill="x", padx=14, pady=(14, 6))
 
-tk.Label(bmi_frame, text="Индекс массы тела", font=FONT_H, bg=WHITE, fg=BLUE).grid(
-    row=0, column=0, columnspan=4, sticky="w", pady=(0, 8))
+tk.Label(bmi_frame, text="Индекс массы тела", font=FONT_H, bg=WHITE, fg=BLUE).grid(row=0, column=0, columnspan=4, sticky="w", pady=(0, 8))
 
 tk.Label(bmi_frame, text="Рост (см):", font=FONT, bg=WHITE).grid(row=1, column=0, sticky="w")
 height_var = tk.StringVar(value="175")
-tk.Entry(bmi_frame, textvariable=height_var, width=7, font=FONT, bg="#f0f4ff").grid(
-    row=1, column=1, sticky="w", padx=(5, 16))
+tk.Entry(bmi_frame, textvariable=height_var, width=7, font=FONT, bg="#f0f4ff").grid(row=1, column=1, sticky="w", padx=(5, 16))
 
 tk.Label(bmi_frame, text="Вес (кг):", font=FONT, bg=WHITE).grid(row=1, column=2, sticky="w")
 weight_var = tk.StringVar(value="70")
-tk.Entry(bmi_frame, textvariable=weight_var, width=7, font=FONT, bg="#f0f4ff").grid(
-    row=1, column=3, sticky="w", padx=(5, 0))
+tk.Entry(bmi_frame, textvariable=weight_var, width=7, font=FONT, bg="#f0f4ff").grid(row=1, column=3, sticky="w", padx=(5, 0))
 
 tk.Label(bmi_frame, text="Пол:", font=FONT, bg=WHITE).grid(row=2, column=0, sticky="w", pady=(8, 0))
 gender_var = tk.StringVar(value="Мужской")
-ttk.Combobox(bmi_frame, textvariable=gender_var, values=["Мужской", "Женский"],
-             width=12, state="readonly", font=FONT).grid(
-    row=2, column=1, columnspan=2, sticky="w", padx=(5, 0), pady=(8, 0))
+ttk.Combobox(bmi_frame, textvariable=gender_var, values=["Мужской", "Женский"], width=12, state="readonly", font=FONT).grid(row=2, column=1, columnspan=2, sticky="w", padx=(5, 0), pady=(8, 0))
 
 bmi_result_var = tk.StringVar()
-tk.Label(bmi_frame, textvariable=bmi_result_var, font=FONT, bg=WHITE,
-         fg=GREEN, wraplength=440, justify="left").grid(
-    row=4, column=0, columnspan=4, sticky="w", pady=(8, 0))
+tk.Label(bmi_frame, textvariable=bmi_result_var, font=FONT, bg=WHITE, fg=GREEN, wraplength=440, justify="left").grid(row=4, column=0, columnspan=4, sticky="w", pady=(8, 0))
 
 def calculate_bmi():
     try:
@@ -83,8 +76,7 @@ tk.Button(bmi_frame, text="Рассчитать ИМТ", command=calculate_bmi,
 cal_frame = tk.Frame(root, bg=WHITE, bd=1, relief="solid", padx=14, pady=12)
 cal_frame.pack(fill="x", padx=14, pady=6)
 
-tk.Label(cal_frame, text="Суточная норма калорий", font=FONT_H, bg=WHITE, fg=BLUE).grid(
-    row=0, column=0, columnspan=4, sticky="w", pady=(0, 8))
+tk.Label(cal_frame, text="Суточная норма калорий", font=FONT_H, bg=WHITE, fg=BLUE).grid(row=0, column=0, columnspan=4, sticky="w", pady=(0, 8))
 
 tk.Label(cal_frame, text="Возраст:", font=FONT, bg=WHITE).grid(row=1, column=0, sticky="w")
 age_var = tk.StringVar(value="22")
@@ -93,10 +85,7 @@ tk.Entry(cal_frame, textvariable=age_var, width=7, font=FONT, bg="#f0f4ff").grid
 
 tk.Label(cal_frame, text="Цель:", font=FONT, bg=WHITE).grid(row=1, column=2, sticky="w")
 goal_var = tk.StringVar(value="Поддержание")
-ttk.Combobox(cal_frame, textvariable=goal_var,
-             values=["Похудение", "Поддержание", "Набор массы"],
-             width=13, state="readonly", font=FONT).grid(
-    row=1, column=3, sticky="w", padx=(5, 0))
+ttk.Combobox(cal_frame, textvariable=goal_var, values=["Похудение", "Поддержание", "Набор массы"], width=13, state="readonly", font=FONT).grid(row=1, column=3, sticky="w", padx=(5, 0))
 
 tk.Label(cal_frame, text="Активность:", font=FONT, bg=WHITE).grid(row=2, column=0, sticky="w", pady=(8, 0))
 activity_labels = ["Сидячий", "Лёгкая", "Умеренная", "Высокая", "Очень высокая"]
@@ -108,19 +97,15 @@ ttk.Combobox(cal_frame, textvariable=activity_var, values=activity_labels,
 
 tk.Label(cal_frame, text="Показать:", font=FONT, bg=WHITE).grid(row=3, column=0, sticky="w", pady=(8, 0))
 show_protein_var = tk.BooleanVar(value=True)
-show_fat_var     = tk.BooleanVar(value=True)
-show_carb_var    = tk.BooleanVar(value=True)
+show_fat_var = tk.BooleanVar(value=True)
+show_carb_var = tk.BooleanVar(value=True)
 
-tk.Checkbutton(cal_frame, text="Белки", variable=show_protein_var,
-               bg=WHITE, font=FONT, activebackground=WHITE).grid(row=3, column=1, sticky="w", pady=(8, 0))
-tk.Checkbutton(cal_frame, text="Жиры", variable=show_fat_var,
-               bg=WHITE, font=FONT, activebackground=WHITE).grid(row=3, column=2, sticky="w", pady=(8, 0))
-tk.Checkbutton(cal_frame, text="Углеводы", variable=show_carb_var,
-               bg=WHITE, font=FONT, activebackground=WHITE).grid(row=3, column=3, sticky="w", pady=(8, 0))
+tk.Checkbutton(cal_frame, text="Белки", variable=show_protein_var, bg=WHITE, font=FONT, activebackground=WHITE).grid(row=3, column=1, sticky="w", pady=(8, 0))
+tk.Checkbutton(cal_frame, text="Жиры", variable=show_fat_var, bg=WHITE, font=FONT, activebackground=WHITE).grid(row=3, column=2, sticky="w", pady=(8, 0))
+tk.Checkbutton(cal_frame, text="Углеводы", variable=show_carb_var, bg=WHITE, font=FONT, activebackground=WHITE).grid(row=3, column=3, sticky="w", pady=(8, 0))
 
 cal_result_var = tk.StringVar()
-tk.Label(cal_frame, textvariable=cal_result_var, font=FONT, bg=WHITE,
-         fg=GREEN, justify="left").grid(row=5, column=0, columnspan=4, sticky="w", pady=(8, 0))
+tk.Label(cal_frame, textvariable=cal_result_var, font=FONT, bg=WHITE, fg=GREEN, justify="left").grid(row=5, column=0, columnspan=4, sticky="w", pady=(8, 0))
 
 def calculate_calories():
     try:
@@ -163,8 +148,7 @@ tk.Button(cal_frame, text="Рассчитать калории", command=calcula
 water_frame = tk.Frame(root, bg=WHITE, bd=1, relief="solid", padx=14, pady=12)
 water_frame.pack(fill="x", padx=14, pady=(6, 14))
 
-tk.Label(water_frame, text="Норма воды в день", font=FONT_H, bg=WHITE, fg=BLUE).grid(
-    row=0, column=0, columnspan=4, sticky="w", pady=(0, 8))
+tk.Label(water_frame, text="Норма воды в день", font=FONT_H, bg=WHITE, fg=BLUE).grid(row=0, column=0, columnspan=4, sticky="w", pady=(0, 8))
 
 tk.Label(water_frame, text="Климат:", font=FONT, bg=WHITE).grid(row=1, column=0, sticky="w")
 climate_var = tk.StringVar(value="Умеренный")
@@ -192,8 +176,7 @@ tk.Scale(water_frame, from_=30, to=200, orient="horizontal",
     row=3, column=0, columnspan=4, sticky="w")
 
 water_result_var = tk.StringVar()
-tk.Label(water_frame, textvariable=water_result_var, font=FONT, bg=WHITE,
-         fg=GREEN, justify="left").grid(row=5, column=0, columnspan=4, sticky="w", pady=(8, 0))
+tk.Label(water_frame, textvariable=water_result_var, font=FONT, bg=WHITE, fg=GREEN, justify="left").grid(row=5, column=0, columnspan=4, sticky="w", pady=(8, 0))
 
 def calculate_water():
     try:
@@ -224,7 +207,6 @@ def calculate_water():
 tk.Button(water_frame, text="Рассчитать норму воды", command=calculate_water,
           bg=BLUE, fg="white", font=FONT_B, relief="flat",
           padx=10, pady=5, cursor="hand2",
-          activebackground=BLUE_ACT, activeforeground="white").grid(
-    row=4, column=0, columnspan=2, sticky="w", pady=(10, 0))
+          activebackground=BLUE_ACT, activeforeground="white").grid(row=4, column=0, columnspan=2, sticky="w", pady=(10, 0))
 
 root.mainloop()
