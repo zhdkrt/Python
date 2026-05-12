@@ -1,12 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
 
-root = tk.Tk()
-root.title("Калькулятор здоровья")
-root.geometry("500x700")
-root.resizable(False, True)
-root.configure(bg=BG)
-
 FONT = ("Arial", 11)
 FONT_B = ("Arial", 11, "bold")
 FONT_H = ("Arial", 13, "bold")
@@ -16,6 +10,12 @@ WHITE = "#ffffff"
 BLUE = "#3a6fd8"
 BLUE_ACT = "#5a8aec"
 GREEN = "#217a3c"
+
+root = tk.Tk()
+root.title("Калькулятор здоровья")
+root.geometry("500x700")
+root.resizable(False, True)
+root.configure(bg=BG)
 
 IMAGE = tk.PhotoImage(file="health.png")
 
