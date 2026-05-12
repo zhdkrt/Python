@@ -13,11 +13,11 @@ GREEN = "#217a3c"
 
 root = tk.Tk()
 root.title("Калькулятор здоровья")
-root.geometry("500x700")
+root.geometry("500x750")
 root.resizable(False, True)
 root.configure(bg=BG)
 
-IMAGE = tk.PhotoImage(file="health.png")
+IMAGE = tk.PhotoImage(file="health.png").subsample(20,20)
 
 bmi_frame = tk.Frame(root, bg=WHITE, bd=1, relief="solid", padx=14, pady=12)
 bmi_frame.pack(fill="x", padx=14, pady=(14, 6))
@@ -25,15 +25,15 @@ bmi_frame.pack(fill="x", padx=14, pady=(14, 6))
 tk.Label(bmi_frame, text="Индекс массы тела", font=FONT_H, bg=WHITE, fg=BLUE).grid(row=0, column=0, columnspan=4, sticky="w", pady=(0, 8))
 
 tk.Label(bmi_frame, text="Рост (см):", font=FONT, bg=WHITE).grid(row=1, column=0, sticky="w")
-height_var = tk.StringVar(value="175")
+height_var = tk.StringVar(value=None)
 tk.Entry(bmi_frame, textvariable=height_var, width=7, font=FONT, bg="#f0f4ff").grid(row=1, column=1, sticky="w", padx=(5, 16))
 
 tk.Label(bmi_frame, text="Вес (кг):", font=FONT, bg=WHITE).grid(row=1, column=2, sticky="w")
-weight_var = tk.StringVar(value="70")
+weight_var = tk.StringVar(value=None)
 tk.Entry(bmi_frame, textvariable=weight_var, width=7, font=FONT, bg="#f0f4ff").grid(row=1, column=3, sticky="w", padx=(5, 0))
 
 tk.Label(bmi_frame, text="Пол:", font=FONT, bg=WHITE).grid(row=2, column=0, sticky="w", pady=(8, 0))
-gender_var = tk.StringVar(value="Мужской")
+gender_var = tk.StringVar(value=None)
 ttk.Combobox(bmi_frame, textvariable=gender_var, values=["Мужской", "Женский"], width=12, state="readonly", font=FONT).grid(row=2, column=1, columnspan=2, sticky="w", padx=(5, 0), pady=(8, 0))
 
 bmi_result_var = tk.StringVar()
@@ -80,18 +80,18 @@ cal_frame.pack(fill="x", padx=14, pady=6)
 tk.Label(cal_frame, text="Суточная норма калорий", font=FONT_H, bg=WHITE, fg=BLUE).grid(row=0, column=0, columnspan=4, sticky="w", pady=(0, 8))
 
 tk.Label(cal_frame, text="Возраст:", font=FONT, bg=WHITE).grid(row=1, column=0, sticky="w")
-age_var = tk.StringVar(value="22")
+age_var = tk.StringVar(value=None)
 tk.Entry(cal_frame, textvariable=age_var, width=7, font=FONT, bg="#f0f4ff").grid(
     row=1, column=1, sticky="w", padx=(5, 16))
 
 tk.Label(cal_frame, text="Цель:", font=FONT, bg=WHITE).grid(row=1, column=2, sticky="w")
-goal_var = tk.StringVar(value="Поддержание")
+goal_var = tk.StringVar(value=None)
 ttk.Combobox(cal_frame, textvariable=goal_var, values=["Похудение", "Поддержание", "Набор массы"], width=13, state="readonly", font=FONT).grid(row=1, column=3, sticky="w", padx=(5, 0))
 
 tk.Label(cal_frame, text="Активность:", font=FONT, bg=WHITE).grid(row=2, column=0, sticky="w", pady=(8, 0))
 activity_labels = ["Сидячий", "Лёгкая", "Умеренная", "Высокая", "Очень высокая"]
 activity_coeffs = [1.2, 1.375, 1.55, 1.725, 1.9]
-activity_var = tk.StringVar(value="Умеренная")
+activity_var = tk.StringVar(value=None)
 ttk.Combobox(cal_frame, textvariable=activity_var, values=activity_labels,
              width=16, state="readonly", font=FONT).grid(
     row=2, column=1, columnspan=3, sticky="w", padx=(5, 0), pady=(8, 0))
@@ -152,14 +152,14 @@ water_frame.pack(fill="x", padx=14, pady=(6, 14))
 tk.Label(water_frame, text="Норма воды в день", font=FONT_H, bg=WHITE, fg=BLUE).grid(row=0, column=0, columnspan=4, sticky="w", pady=(0, 8))
 
 tk.Label(water_frame, text="Климат:", font=FONT, bg=WHITE).grid(row=1, column=0, sticky="w")
-climate_var = tk.StringVar(value="Умеренный")
+climate_var = tk.StringVar(value=None)
 ttk.Combobox(water_frame, textvariable=climate_var,
              values=["Холодный", "Умеренный", "Жаркий"],
              width=11, state="readonly", font=FONT).grid(
     row=1, column=1, sticky="w", padx=(5, 16))
 
 tk.Label(water_frame, text="Тренировки:", font=FONT, bg=WHITE).grid(row=1, column=2, sticky="w")
-workout_var = tk.StringVar(value="Нет")
+workout_var = tk.StringVar(value=None)
 ttk.Combobox(water_frame, textvariable=workout_var,
              values=["Нет", "Лёгкие", "Интенсивные"],
              width=11, state="readonly", font=FONT).grid(
@@ -173,8 +173,7 @@ slider_label.grid(row=2, column=1, sticky="w", padx=(5, 0), pady=(8, 2))
 tk.Scale(water_frame, from_=30, to=200, orient="horizontal",
          variable=slider_weight_var, length=350, bg=WHITE,
          highlightthickness=0, font=FONT,
-         command=lambda value: slider_label.config(text=f"{value} кг")).grid(
-    row=3, column=0, columnspan=4, sticky="w")
+         command=lambda value: slider_label.config(text=f"{value} кг")).grid(row=3, column=0, columnspan=4, sticky="w")
 
 water_result_var = tk.StringVar()
 tk.Label(water_frame, textvariable=water_result_var, font=FONT, bg=WHITE, fg=GREEN, justify="left").grid(row=5, column=0, columnspan=4, sticky="w", pady=(8, 0))
