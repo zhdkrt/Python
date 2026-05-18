@@ -122,7 +122,7 @@ def calculate_calories():
         coeff = activity_coeffs[activity_labels.index(activity_var.get())]
         tdee = bmr * coeff
 
-        if goal_var.get() == "Похудение":
+        if goal_var.get() == "ПОХУдение":
             tdee -= 500
         elif goal_var.get() == "Набор массы":
             tdee += 300
