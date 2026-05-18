@@ -122,7 +122,7 @@ def calculate_calories():
         coeff = activity_coeffs[activity_labels.index(activity_var.get())]
         tdee = bmr * coeff
 
-        if goal_var.get() == "ПОХУдение":
+        if goal_var.get() == "Похудение":
             tdee -= 500
         elif goal_var.get() == "Набор массы":
             tdee += 300
@@ -207,6 +207,6 @@ def calculate_water():
 tk.Button(water_frame, text="Рассчитать норму воды", command=calculate_water,
           bg=BLUE, fg="white", font=FONT_B, relief="flat",
           padx=10, pady=5, cursor="hand2",
-          activebackground=BLUE_ACT, activeforeground="white", image=IMAGE, compound=tk.LEFT).grid(row=4, column=0, columnspan=2, sticky="w", pady=(10, 0))
+          activebackground=BLUE_ACT, activeforeground="white", image=IMAGE, compound=tk.RIGHT).grid(row=4, column=0, columnspan=2, sticky="w", pady=(10, 0))
 
 root.mainloop()
