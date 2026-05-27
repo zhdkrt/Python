@@ -88,12 +88,7 @@ class Treasure(pygame.sprite.Sprite):
         self.points = 50
 
 def draw_grass():
-    grass_green = (60, 179, 113)
-    dark_grass = (34, 139, 34)
-    for i in range(0, 800, 5):
-        offset = random.randint(-3, 3)
-        grass_y = 180 + offset
-        pygame.draw.line(screen, grass_green if i % 2 == 0 else dark_grass, (i, grass_y), (i, grass_y + 5), 1)
+    pygame.draw.rect(screen, (60, 179, 113), (0, 0, 0, 0))
 
 def main():
     boat = Boat()
