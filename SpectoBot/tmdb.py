@@ -10,7 +10,7 @@ BASE_URL = "https://api.themoviedb.org/3"
 IMG_URL = "https://image.tmdb.org/t/p/w500"
 
 
-def _make_request(endpoint, params=None):
+def make_request(endpoint, params=None):
     if params is None:
         params = {}
 
@@ -24,7 +24,7 @@ def _make_request(endpoint, params=None):
     return response.json()
 
 
-def _normalize_movie(movie):
+def normalize_movie(movie):
     return {
         "title": movie.get("title", "Без названия"),
         "year": movie.get("release_date", "----")[:4] if movie.get("release_date") else "----",
@@ -34,7 +34,7 @@ def _normalize_movie(movie):
     }
 
 
-def _pick_movie(results):
+def pick_movie(results):
     filtered = [movie for movie in results if movie.get("title") and movie.get("overview")]
     if not filtered:
         filtered = results
@@ -42,12 +42,12 @@ def _pick_movie(results):
     if not filtered:
         return None
 
-    return _normalize_movie(random.choice(filtered))
+    return normalize_movie(random.choice(filtered))
 
 
 def get_random_movie(category="random", genre_id=None):
     if category == "genre":
-        data = _make_request(
+        data = make_request(
             "/discover/movie",
             {
                 "sort_by": "popularity.desc",
@@ -57,27 +57,27 @@ def get_random_movie(category="random", genre_id=None):
                 "include_adult": False
             }
         )
-        return _pick_movie(data.get("results", []))
+        return pick_movie(data.get("results", []))
 
     if category == "popular":
-        data = _make_request(
+        data = make_request(
             "/movie/popular",
             {
                 "page": random.randint(1, 5)
             }
         )
-        return _pick_movie(data.get("results", []))
+        return pick_movie(data.get("results", []))
 
     if category == "top":
-        data = _make_request(
+        data = make_request(
             "/movie/top_rated",
             {
                 "page": random.randint(1, 5)
             }
         )
-        return _pick_movie(data.get("results", []))
+        return pick_movie(data.get("results", []))
 
-    data = _make_request(
+    data = make_request(
         "/discover/movie",
         {
             "sort_by": "popularity.desc",
@@ -86,4 +86,4 @@ def get_random_movie(category="random", genre_id=None):
             "include_adult": False
         }
     )
-    return _pick_movie(data.get("results", []))
+    return pick_movie(data.get("results", []))
